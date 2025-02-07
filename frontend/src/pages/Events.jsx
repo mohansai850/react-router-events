@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 export const eventsLoader = () => {
   return axios
-    .get("http://localhost:8080/events/lkl")
+    .get("http://localhost:8080/events")
     .then((res) => {
       return res.data.events;
     })
