@@ -25,8 +25,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Events, { eventsLoader } from "./pages/Events";
 import EditEvent from "./pages/EditEvent";
-import EventDetail, { loader as eventDetailLoader } from "./pages/EventDetail";
-import NewEvent from "./pages/NewEvent";
+import EventDetail, {
+  loader as eventDetailLoader,
+  action as deleteEventDetail,
+} from "./pages/EventDetail";
+import NewEvent, { action as newEventAction } from "./pages/NewEvent";
 import Root from "./pages/Root";
 import EventsRoot from "./pages/EventsRoot";
 import Error from "./pages/Error";
@@ -48,10 +51,10 @@ function App() {
           children: [
             { index: true, element: <Events />, loader: eventsLoader },
             {
-              // index: true,
-              id: "event-detail",
               path: ":id",
               loader: eventDetailLoader,
+              action: deleteEventDetail,
+              id: "event-detail",
               children: [
                 {
                   index: true,
@@ -63,10 +66,10 @@ function App() {
                 },
               ],
             },
-
             {
               path: "new",
               element: <NewEvent />,
+              action: newEventAction,
             },
           ],
         },
