@@ -17,5 +17,10 @@ export async function action({ request, params }) {
   };
 
   const response = await axios.post("http://localhost:8080/events", formValues);
-  if (response.status) return redirect("/events");
+  console.log(response);
+  if (response.status === 422) {
+    console.log(response);
+    return response;
+  }
+  if (response.ok) return redirect("/events");
 }
